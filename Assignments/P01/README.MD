@@ -6,4 +6,4 @@
 
 |   #   | File            | Description                                        |
 | :---: | --------------- | -------------------------------------------------- |
-|   1   | main.cpp        | Main driver of my project that launches game.     
+|   1   | main.cpp        | Main driver of my project.    
