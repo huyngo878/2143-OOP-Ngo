@@ -62,7 +62,8 @@ public:
     void pushFront(int);
     void print();
     void pushRear(int);
-
+    void pushRear(Vector *);
+    Vector(int *, int);
 
   
 };
@@ -71,6 +72,31 @@ Vector::Vector()
 {
     head = NULL;
     tail = NULL;
+}
+
+Vector::Vector(int *_array, int size)
+{
+   for(int i = size; i >= 0; i--)
+   {
+        if(i == size){}
+        else
+        pushFront(_array[i]);
+   }
+}
+
+void Vector::pushRear(Vector * _Vector)
+{
+    Node * first = head;
+    Node * second = _Vector;
+
+    while(first->next != NULL)
+    {
+        first = first->next;
+    }
+    if(first->next == NULL)
+    {
+        pushRear(_Vector->data);
+    }
 }
 
 void Vector::pushRear(int num)
@@ -131,7 +157,7 @@ int main()
     v1.pushRear(25);
     v1.print();
 // [25, 20, 18, 18, 20, 25]
-/*
+
 int A[] = {11,25,33,47,51};
 Vector v2(A,5);
 v2.print();
@@ -146,7 +172,7 @@ v2.print();
 v1.pushRear(v2);
 v1.print();
 // [25, 20, 18, 18, 20, 25, 9, 11, 25, 33, 47, 51, 63]
-
+/*
 x = v1.popFront();
 x = v1.popFront();
 x = v1.popFront();
