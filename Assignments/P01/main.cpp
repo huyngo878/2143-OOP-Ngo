@@ -59,10 +59,11 @@ private:
     Node * tail;
 public:
     Vector();
+    Vector(Vector*);
     void pushFront(int);
     void print();
     void pushRear(int);
-    void pushRear(Vector *);
+    void pushRear(Vector);
     Vector(int *, int);
 
   
@@ -84,19 +85,27 @@ Vector::Vector(int *_array, int size)
    }
 }
 
-void Vector::pushRear(Vector * _Vector)
+Vector::Vector(Vector * _Vector)
 {
-    Node * first = head;
-    Node * second = _Vector;
+    Node * firstList = head;
+    Node * secondList = _Vector->head;
+}
 
-    while(first->next != NULL)
+void Vector::pushRear(Vector _vector)
+{
+    Node * firstList = head;
+    Node * secondList = _vector.head;
+
+    if(head == NULL)
     {
-        first = first->next;
+        head = secondList;
+        tail = secondList;
     }
-    if(first->next == NULL)
+    else
     {
-        pushRear(_Vector->data);
+        tail->next = secondList;
     }
+    tail = secondList;
 }
 
 void Vector::pushRear(int num)
