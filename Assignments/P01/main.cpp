@@ -75,7 +75,9 @@ public:
   void pushFront(Vector);
   Vector(int *, int);
 };
-// open files
+//Purpose: Open the file that the user chooses
+//Receives: User input(string)
+//Returns: nothing
 void openFiles(ifstream &infile) {
   string inFileName;
   string outFileName;
@@ -84,23 +86,35 @@ void openFiles(ifstream &infile) {
   infile.open(inFileName); // open input file
 }
 
+//Purpose: Puts number from a file into a linked list
+//Receives: User(userfile)
+//Returns: nothing
 Vector::Vector(string fname) {
   ifstream infile;
   ofstream outfile;
   openFiles(infile);
   int num;
+  //read until end of file and assign the number
+  //to (num) then use pushFront(num) to add to a linked list
   while (!infile.eof()) {
     infile >> num;
     pushFront(num);
   }
 }
 
+//Purpose: Constructor to assign HEAD and TAIL to null when created
+//Returns: nothing
 Vector::Vector() {
   head = NULL;
   tail = NULL;
 }
 
+//Purpose: Allocated numbers in the array into a linked list
+//Receives: Array and the size of the array
+//Returns: nothing
 Vector::Vector(int *_array, int size) {
+  //use a forloop to go through the array and use the constructor
+  //pushFront(arrayname[i]) to add the number to the linked list
   for (int i = size; i >= 0; i--) {
     if (i == size) {
     } else
@@ -108,15 +122,21 @@ Vector::Vector(int *_array, int size) {
   }
 }
 
+//Purpose: Adds the link list to the other
+//Receives: Vector
+//Returns:  nothing
 Vector::Vector(Vector *_Vector) {
   Node *firstList = head;
   Node *secondList = _Vector->head;
 }
 
+//Purpose: Push the data from linked list to another at the rear
+//Receives: Vector that is being added in
+//Returns: nothing
 void Vector::pushRear(Vector _vector) {
   Node *firstList = head;
   Node *secondList = _vector.head;
-
+  //if the first node is empty set the first node as head and tail
   if (head == NULL) {
     head = secondList;
     tail = secondList;
@@ -126,9 +146,12 @@ void Vector::pushRear(Vector _vector) {
   tail = secondList;
 }
 
+//Purpose: pushes a certain number to the rear of the linked list
+//Receives: integer
+//Returns: noting
 void Vector::pushRear(int num) {
   Node *temp = new Node(num);
-
+  //if the first node is empty set the first node as head and tail
   if (head == NULL) {
     head = temp;
     tail = temp;
@@ -138,8 +161,13 @@ void Vector::pushRear(int num) {
   tail = temp;
 }
 
+
+//Purpose: Pushes a certain number to the front of the linked list
+//Receives: integer
+//Returns: nothing
 void Vector::pushFront(int n) {
   Node *newNode = new Node(n);
+  //if the first node is empty set the first node as head and tail
   if (head == NULL) {
     head = newNode;
     tail = newNode;
@@ -149,6 +177,9 @@ void Vector::pushFront(int n) {
   }
 }
 
+//Purpose: Removes a node from the linked list
+//Receives: noting
+//Returns: data of the deleted node
 int Vector::popFront() {
   Node *temp = head;
   head = head->next;
@@ -156,10 +187,13 @@ int Vector::popFront() {
   return head->data;
 }
 
+//Purpose: push an entire vector to the front of the other
+//Receives: Vector
+//Returns: notning
 void Vector::pushFront(Vector _vector) {
   Node *firstList = head;
   Node *secondList = _vector.head;
-
+  //if the first node is empty set the first node as head and tail
   if (head == NULL) {
     head = secondList;
     tail = secondList;
@@ -169,8 +203,13 @@ void Vector::pushFront(Vector _vector) {
   tail = secondList;
 }
 
+//Purpose: pop a number in the rear
+//Receives: nothing
+//Returns: number that was deleted
 int Vector::popRear() {
   Node *temp = head;
+  //traverse the linked list to check the next->next
+  //if == NULL remove the node before it
   while (temp->next->next != NULL) {
     temp = temp->next;
   }
@@ -181,13 +220,16 @@ int Vector::popRear() {
   return deletedNum;
 }
 
+//Purpose: traverse and prints the linked list
+//Receives: nothing
+//Returns: nothing
 void Vector::print() {
 
   Node *traverse = head;
 
   ofstream outfile;
   outfile.open("test.out", fstream::app);
-
+  //print out my heading here
   if(counterRun == 0)
   {
     outfile << "Huy Ngo" << endl << "9/15/2020" << endl
@@ -208,25 +250,30 @@ void Vector::print() {
   outfile << endl;
 }
 
+//Purpose: Find a certain number in the linked list and display the index
+//Receives: integer to find
+//Returns: the index the number was at or if it was not found
 int Vector::find(int num) {
-  // Used to keep track of the Node Index
+  //index
   int index = 0;
   Node *temp = head;
-  // LinkedList traversal for finding the node
+
   while (temp != NULL) {
     if (temp->data == num) {
-      // If element found return index
+      //if found return the index
       return index;
     }
     temp = temp->next;
     index++;
   }
-  // If element not found
+  // If number is not found return -1
   return -1;
 }
 
+//Purpose: push a number to the correct order
+//Receives: integer
+//Returns: nothing
 void Vector::inOrderPush(int num) {
-  // Dynamically create your new node
   Node *temp = new Node(num);
 
   // if empty
