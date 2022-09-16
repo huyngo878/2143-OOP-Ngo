@@ -41,6 +41,7 @@
 
 using namespace std;
 
+//struct to create the node an assign a number to it
 struct Node {
   int data;
   Node *next;
@@ -57,6 +58,7 @@ private:
   Node *tail;
 
 public:
+//lots of constructors
   Vector();
   Vector(string);
   Vector(Vector *);
@@ -72,22 +74,19 @@ public:
   void pushFront(Vector);
   Vector(int *, int);
 };
-
-void openFiles(ifstream &infile, ofstream &outfile) {
+//open files
+void openFiles(ifstream &infile) {
   string inFileName;
   string outFileName;
   cout << "Enter the input file name: ";
   cin >> inFileName;
   infile.open(inFileName); // open input file
-  cout << "Enter the output file name: ";
-  cin >> outFileName;
-  outfile.open(outFileName); // open out putfile
 }
 
 Vector::Vector(string fname) {
   ifstream infile;
   ofstream outfile;
-  openFiles(infile, outfile);
+  openFiles(infile);
   int num;
   while (!infile.eof()) {
     infile >> num;
@@ -182,20 +181,21 @@ int Vector::popRear() {
 }
 
 void Vector::print() {
-  Node *traverse = head;
-  cout << "[" ;
-    while (traverse != NULL) {
-    cout << traverse->data;
-    traverse = traverse->next;
-    if(traverse == NULL)
-    {
-      cout << "] ";
-    }
-    else
-    cout << ", ";
 
+  Node *traverse = head;
+
+  ofstream outfile;
+  outfile.open("test.out", fstream::app);
+  outfile << "[";
+  while (traverse != NULL) {
+    outfile << traverse->data;
+    traverse = traverse->next;
+    if (traverse == NULL) {
+      outfile << "] ";
+    } else
+      outfile << ", ";
   }
-  cout << endl;
+  outfile << endl;
 }
 
 int Vector::find(int num) {
@@ -248,6 +248,7 @@ void Vector::inOrderPush(int num) {
 }
 
 int main() {
+
   int x = 0;
 
   Vector v1;

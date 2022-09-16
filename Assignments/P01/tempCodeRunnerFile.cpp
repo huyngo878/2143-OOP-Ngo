@@ -1,2 +1,2 @@
 
-    v1.pushRear(9);
+Vector::Vector(int *_array, int size) {
