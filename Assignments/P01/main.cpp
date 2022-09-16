@@ -41,7 +41,8 @@
 
 using namespace std;
 
-//struct to create the node an assign a number to it
+int counterRun = 0;
+// struct to create the node an assign a number to it
 struct Node {
   int data;
   Node *next;
@@ -58,7 +59,7 @@ private:
   Node *tail;
 
 public:
-//lots of constructors
+  // lots of constructors
   Vector();
   Vector(string);
   Vector(Vector *);
@@ -74,7 +75,7 @@ public:
   void pushFront(Vector);
   Vector(int *, int);
 };
-//open files
+// open files
 void openFiles(ifstream &infile) {
   string inFileName;
   string outFileName;
@@ -186,7 +187,16 @@ void Vector::print() {
 
   ofstream outfile;
   outfile.open("test.out", fstream::app);
+
+  if(counterRun == 0)
+  {
+    outfile << "Huy Ngo" << endl << "9/15/2020" << endl
+  << "Fall 2143" << endl << endl;
+    counterRun++;
+  }
+  
   outfile << "[";
+  
   while (traverse != NULL) {
     outfile << traverse->data;
     traverse = traverse->next;
