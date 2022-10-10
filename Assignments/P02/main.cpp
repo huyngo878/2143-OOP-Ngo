@@ -1,4 +1,40 @@
-
+/*
+ 
+   /$$$$$$    /$$ /$$   /$$  /$$$$$$                               
+  /$$__  $$ /$$$$| $$  | $$ /$$__  $$                              
+ |__/  \ $$|_  $$| $$  | $$|__/  \ $$                              
+   /$$$$$$/  | $$| $$$$$$$$   /$$$$$/                              
+  /$$____/   | $$|_____  $$  |___  $$                              
+ | $$        | $$      | $$ /$$  \ $$                              
+ | $$$$$$$$ /$$$$$$    | $$|  $$$$$$/                              
+ |________/|______/    |__/ \______/                               
+                                                                   
+                                                                   
+                                                                   
+  /$$$$$$$   /$$$$$$   /$$$$$$                                     
+ | $$__  $$ /$$$_  $$ /$$__  $$                                    
+ | $$  \ $$| $$$$\ $$|__/  \ $$                                    
+ | $$$$$$$/| $$ $$ $$  /$$$$$$/                                    
+ | $$____/ | $$\ $$$$ /$$____/                                     
+ | $$      | $$ \ $$$| $$                                          
+ | $$      |  $$$$$$/| $$$$$$$$                                    
+ |__/       \______/ |________/                                    
+                                                                   
+                                                                   
+                                                                   
+  /$$   /$$                           /$$   /$$                    
+ | $$  | $$                          | $$$ | $$                    
+ | $$  | $$ /$$   /$$ /$$   /$$      | $$$$| $$  /$$$$$$   /$$$$$$ 
+ | $$$$$$$$| $$  | $$| $$  | $$      | $$ $$ $$ /$$__  $$ /$$__  $$
+ | $$__  $$| $$  | $$| $$  | $$      | $$  $$$$| $$  \ $$| $$  \ $$
+ | $$  | $$| $$  | $$| $$  | $$      | $$\  $$$| $$  | $$| $$  | $$
+ | $$  | $$|  $$$$$$/|  $$$$$$$      | $$ \  $$|  $$$$$$$|  $$$$$$/
+ |__/  |__/ \______/  \____  $$      |__/  \__/ \____  $$ \______/ 
+                      /$$  | $$                 /$$  \ $$          
+                     |  $$$$$$/                |  $$$$$$/          
+                      \______/                  \______/           
+ 
+*/
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -313,10 +349,12 @@ public:
         }
     }
 */
-    //overloading [] to return (num) index
+    //Purpose: Make a linkedlist be able to function like an array
+    //Receives: a certain int inside []
+    //Returns: the value at that current index
     int & operator[](int num)
     { 
-        Node* prev = head;            // get previous and next pointers
+        Node* prev = head;            
         Node* curr = head;
         while (num>0) 
         {  
@@ -326,7 +364,9 @@ public:
         }
         return curr->data;
     }
-    //overloading << to print out the entire list
+    //Purpose: overloading the << operator to cout the entire linked list
+    //Receives: A MyVector object
+    //Returns: prints out the linked list
     friend ostream & operator<<(ostream &os, MyVector &v)
     {
         Node* prev = v.head;            
@@ -342,7 +382,10 @@ public:
         return os;
     }
 
-
+    //Purpose: Add the values between two linked list
+    //Receives: right hand side linked list
+    //Returns: add the values from the left side and right side together and
+    //puts it in a new array
     MyVector operator+(MyVector &rhs)
     {
         MyVector newVector;
@@ -393,7 +436,10 @@ public:
 
         return newVector;
     }
-
+    //Purpose: Subtract the numbers between two linked list
+    //Receives: right hand side linked list
+    //Returns: subtract the values from the left side and right side together and
+    //puts it in a new linked list
     MyVector operator-(const MyVector &rhs)
     {
         MyVector newVector;
@@ -451,7 +497,10 @@ public:
         cout << newVector.head->next->next->next->next->data << endl;*/
         return newVector;
     }
-
+    //Purpose: Multiply the numbers between two linked list
+    //Receives: right hand side linked list
+    //Returns: Multiply the values from the left side and right side together and
+    //puts it in a new linked list
     MyVector operator*(const MyVector &rhs)
     {
         MyVector newVector;
@@ -509,6 +558,10 @@ public:
         cout << newVector.head->next->next->next->next->data << endl;*/
         return newVector;
     }
+    //Purpose: Divides the numbers between two linked list
+    //Receives: right hand side linked list
+    //Returns: Divides the values from the left side and right side together and
+    //puts it in a new linked list
     MyVector operator/(const MyVector &rhs)
     {
         MyVector newVector;
@@ -566,7 +619,9 @@ public:
         cout << newVector.head->next->next->next->next->data << endl;*/
         return newVector;
     }
-
+    //Purpose: Compares the two linked list to see if its the same
+    //Receives: right hand side linked list
+    //Returns: 1(true) or 0(false), 1 being the same and 0 being not the same
     bool operator==(const MyVector &rhs)
     {
         Node* curr = head;
