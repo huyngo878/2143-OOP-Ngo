@@ -301,18 +301,18 @@ public:
      * @brief Destroy the My Vector object
      * 
      */
-    ~MyVector() {
+ /*   ~MyVector() {
         Node* curr = head;
         Node* prev = head;
 
         while(curr){
             prev = curr;
             curr = curr->next;
-            //cout << "deleting: " << prev->data << endl;
+            cout << "deleting: " << prev->data << endl;
             delete prev;
         }
     }
-
+*/
     //overloading [] to return (num) index
     int & operator[](int num)
     { 
@@ -342,6 +342,7 @@ public:
         return os;
     }
 
+
     MyVector operator+(MyVector &rhs)
     {
         MyVector newVector;
@@ -351,8 +352,6 @@ public:
         Node* curr_rhs = rhs.head;
         Node* prev_rhs = rhs.head;
 
-        cout << curr->next->data <<endl;
-        cout << curr_rhs->next->data <<endl;
 
         while (curr != NULL)
         {    
@@ -395,10 +394,9 @@ public:
         return newVector;
     }
 
-     MyVector operator-(MyVector &rhs)
+    MyVector operator-(const MyVector &rhs)
     {
         MyVector newVector;
-        Node* current = newVector.head;
         Node* curr = head;
         Node* prev = head;
 
@@ -438,12 +436,164 @@ public:
 
         }
 
-        cout << newVector.head->data << endl;
-        cout << newVector.head->next->data << endl;
+        while (curr_rhs != NULL)
+        {
+            newVector.pushRear(curr_rhs->data);
+
+            prev_rhs = curr_rhs;
+            curr_rhs = curr_rhs->next;
+        }
+
+        //cout << newVector << endl;
+        /*cout << newVector.head->next->data << endl;
         cout << newVector.head->next->next->data << endl;
         cout << newVector.head->next->next->next->data << endl;
-        cout << newVector.head->next->next->next->next->data << endl;
+        cout << newVector.head->next->next->next->next->data << endl;*/
         return newVector;
+    }
+
+    MyVector operator*(const MyVector &rhs)
+    {
+        MyVector newVector;
+        Node* curr = head;
+        Node* prev = head;
+
+        Node* curr_rhs = rhs.head;
+        Node* prev_rhs = rhs.head;
+
+        //cout << curr->next->data - curr_rhs->next->data <<endl;
+        //cout << curr_rhs->next->data <<endl;
+
+        while (curr != NULL)
+        {
+            if(curr != NULL && curr_rhs != NULL)
+            {
+                newVector.pushRear(curr->data * curr_rhs->data);
+                
+
+                prev = curr;
+                curr = curr->next;
+
+                prev_rhs = curr_rhs;
+                curr_rhs = curr_rhs->next;
+            }
+            else if(curr != NULL)
+            {
+                newVector.pushRear(curr->data);
+
+                prev = curr;
+                curr = curr->next;
+            }
+            else if(curr_rhs != NULL)
+            {
+                newVector.pushRear(curr_rhs->data);
+
+                prev_rhs = curr_rhs;
+                curr_rhs = curr_rhs->next;
+            }
+
+        }
+
+        while (curr_rhs != NULL)
+        {
+            newVector.pushRear(curr_rhs->data);
+
+            prev_rhs = curr_rhs;
+            curr_rhs = curr_rhs->next;
+        }
+
+        //cout << newVector << endl;
+        /*cout << newVector.head->next->data << endl;
+        cout << newVector.head->next->next->data << endl;
+        cout << newVector.head->next->next->next->data << endl;
+        cout << newVector.head->next->next->next->next->data << endl;*/
+        return newVector;
+    }
+    MyVector operator/(const MyVector &rhs)
+    {
+        MyVector newVector;
+        Node* curr = head;
+        Node* prev = head;
+
+        Node* curr_rhs = rhs.head;
+        Node* prev_rhs = rhs.head;
+
+        //cout << curr->next->data - curr_rhs->next->data <<endl;
+        //cout << curr_rhs->next->data <<endl;
+
+        while (curr != NULL)
+        {
+            if(curr != NULL && curr_rhs != NULL)
+            {
+                newVector.pushRear(curr->data / curr_rhs->data);
+                
+
+                prev = curr;
+                curr = curr->next;
+
+                prev_rhs = curr_rhs;
+                curr_rhs = curr_rhs->next;
+            }
+            else if(curr != NULL)
+            {
+                newVector.pushRear(curr->data);
+
+                prev = curr;
+                curr = curr->next;
+            }
+            else if(curr_rhs != NULL)
+            {
+                newVector.pushRear(curr_rhs->data);
+
+                prev_rhs = curr_rhs;
+                curr_rhs = curr_rhs->next;
+            }
+
+        }
+
+        while (curr_rhs != NULL)
+        {
+            newVector.pushRear(curr_rhs->data);
+
+            prev_rhs = curr_rhs;
+            curr_rhs = curr_rhs->next;
+        }
+
+        //cout << newVector << endl;
+        /*cout << newVector.head->next->data << endl;
+        cout << newVector.head->next->next->data << endl;
+        cout << newVector.head->next->next->next->data << endl;
+        cout << newVector.head->next->next->next->next->data << endl;*/
+        return newVector;
+    }
+
+    bool operator==(const MyVector &rhs)
+    {
+        Node* curr = head;
+        Node* prev = head;
+
+        Node* curr_rhs = rhs.head;
+        Node* prev_rhs = rhs.head;
+
+        while((curr_rhs->data == curr->data) && curr->next != NULL)
+        {
+            if(curr_rhs->data == curr->data)
+            {
+                prev = curr;
+                curr = curr->next;
+
+                prev_rhs = curr_rhs;
+                curr_rhs = curr_rhs->next;
+            }
+        }
+        if(curr_rhs->data != curr->data)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 };
 
@@ -477,16 +627,13 @@ fout << v1 << endl;
 
 MyVector v3 = v1 + v2; 
 cout << v3 << endl;
-cout << v1 << endl;
-cout << v2 << endl;
 // writes out [11,22,33,4,9] to console.
 
 v3 = v1 - v2;
-cout << v1 << endl;
-cout << v2 << endl;
+
 cout << v3 << endl;
 // writes out [-9,-18,-27,4,9] to console.
-/*
+
 v3 = v2 - v1;
 cout << v3 << endl;
 // writes out [9,18,27,4,9] to console.
@@ -515,5 +662,4 @@ cout << (v4 == v1) << endl;
 // writes 1 to console (true) .
 
 
-*/
 }
