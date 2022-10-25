@@ -12,7 +12,8 @@
 
 ### Attributes/Properties
 
->
+>Attributes are varibles that belong to a class
+>Properties are like setter and getter
 
 ### Class
 
