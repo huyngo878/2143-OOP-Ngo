@@ -6,6 +6,7 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -94,7 +95,6 @@ const string ranks[13] =
 
 */
 
-class CardContainer;
 class Hand;
 
 class Card {
@@ -107,6 +107,7 @@ protected:
 	string rankChar; // Ace, 1 ,2 ,3 ... Q, K
 	string fcolor;   // Spade=blue, Diamond=red, etc.
 	string bcolor;
+  
 
 public:
 	friend class Hand;
@@ -118,8 +119,13 @@ public:
 	bool operator==(const Card &);
 	bool operator!=(const Card &);
 	bool operator()(const Card &);
+  int operator+(const Card &);
 	friend ostream &operator<<(ostream &os, const Card &card);
 	friend class CardContainer;
+  int getValue()
+  {
+    return value;
+  }
 	int getRank() {
 		return rank;
 	}
@@ -189,8 +195,13 @@ Card::Card(int num) {
 	// fcolor = to_string(1+ rand() % 7);
 	fcolor = to_string(suitNum + 2);
 	bcolor = "9";
-	rank = number % 13;
+	rank = (number % 13);
 	rankChar = ranks[rank];
+}
+
+int Card::operator+(const Card &rhs)
+{
+  return this->rank + rhs.rank;
 }
 
 bool Card::operator<(const Card &rhs) {
@@ -310,8 +321,28 @@ public:
 	void Sort();
 };
 
-
-
+/*
+    Needs/Rules:
+      - Need to generate a pair of cards for a player
+      - Need to generate a pair of cards for the dealer
+      - Need to add up the face value of the cards
+          - 21 is an instant win (blackjack) unless dealer
+            also gets 21 in which case it is a push
+      - If the dealer's hand is better than the player's
+        hand, they need to hit (request a card)
+      - Going over 21 is a bust
+      - If the player's hand is better than the dealer's
+        they can choose to stand and not draw, then the
+        dealer will need to draw cards until he beats the
+        player's hand, or he goes bust.
+      - Face cards are worth 10 point
+      - Numerical cards are worth their numerical value
+      - Aces can be worth 1 or 11 depending on a combination
+        of player's choice
+          - For example an Ace + 2 can be worth 13 or 3
+          - If you draw a king next, it has to be 10 + 2
+            plus 1 because 11 + 10 + 2 = 23 and is a bust
+*/
 
 
 class Player {
@@ -320,12 +351,27 @@ protected:
 	Hand *hand;
 	double bank;
 	double bet;
+  int total;
 
 public:
 	Player() {
-		hand = new Hand();
+    total = 0;
+    bet = 0;
+    bank = 0;
 	}
-	double getBet() {
+  void setTotal(int x)
+  {
+    total = x;
+  }
+  int getTotal()
+  {
+    return total;
+  }
+  void addTotal(int x)
+  {
+    total += x;
+  }
+  double getBet() {
 		return bet;
 	}
 };
