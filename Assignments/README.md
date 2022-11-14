@@ -8,4 +8,4 @@
 |   3   |      [P02](https://github.com/huyngo878/2143-OOP-Ngo/tree/main/Assignments/P02)     | Program 2 - MyVector Class 2                      |
 | 4 | [A04](https://github.com/huyngo878/2143-OOP-Ngo/tree/main/Assignments/OOP_Primer)| Basic OOP terminology|
 | 5 | [P03](https://github.com/huyngo878/2143-OOP-Ngo/tree/main/Assignments/P03) | Black Jack Program|
-| 6 | [P04] | RPSLS program |
+| 6 | [P04](https://github.com/huyngo878/2143-OOP-Ngo/tree/main/Assignments/P04)| RPSLS program |
