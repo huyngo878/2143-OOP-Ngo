@@ -10,8 +10,8 @@ using namespace std;
 class Die {
     int sides;
 public:
-    Die():sides{6}{}
-    Die(int sides):sides{sides}{}
+    Die():sides(6){}
+    Die(int sides):sides(sides){}
     int roll(int rolls = 1) {
         int sum = 0;
         while(rolls--){
