@@ -24,6 +24,12 @@ public:
         damage = "1.d.4";
         die = new Dice(damage);
     }
+    Weapon(string name_, string dices)
+    {
+        name = name_;
+        damage = dices;
+        die = new Dice(damage);
+    }
     /**
      * @brief Overloaded Constructor for a new Base Weapon object
      *  Also invokes the Dice class constructor with the "die" type

@@ -259,79 +259,101 @@ public:
     }
 };
 
+struct Player{
+    string weapon1;
+    string weapon2;
+    // other possible stuff
+
+    /**
+     * Constructor guarantees a player has two different "weapons"
+     */
+    Player(){
+        weapon1 = Hands::RandHand();
+        weapon2 = Hands::RandHand();
+
+        // if both weapons are the same
+        // choose another.
+        while(weapon2==weapon1){
+            weapon2 = Hands::RandHand();
+        }
+    }
+    // other possible methods
+};
+
+
 int main() {
-    cout << "Testing my default emojis for Rock Paper Scissors Lizard Spock" << endl;
-    cout << "==============================================================" << endl;
-    cout << "Rock: " << ROCK2 << endl;
-    cout << "Paper: " << PAPER2 << endl;
-    cout << "Scissors: " << SCISSORS2 << endl;
-    cout << "Lizard: " << LIZARD2 << endl;
-    cout << "Spock: " << SPOCK2 << endl;
+    // cout << "Testing my default emojis for Rock Paper Scissors Lizard Spock" << endl;
+    // cout << "==============================================================" << endl;
+    // cout << "Rock: " << ROCK2 << endl;
+    // cout << "Paper: " << PAPER2 << endl;
+    // cout << "Scissors: " << SCISSORS2 << endl;
+    // cout << "Lizard: " << LIZARD2 << endl;
+    // cout << "Spock: " << SPOCK2 << endl;
 
-    cout << "\n\nTesting Random Number Generators" << endl;
-    cout << "==============================================================" << endl;
+    // cout << "\n\nTesting Random Number Generators" << endl;
+    // cout << "==============================================================" << endl;
 
-    cout << "\nUsing Rand() builtin" << endl;
-    cout << "====================" << endl;
-    int     arr[21] = {0};
-    double  res[21] = {0.0};
-    int     total = 1000;
-    DieRoll dr;
-    Tester  Tdr;
+    // cout << "\nUsing Rand() builtin" << endl;
+    // cout << "====================" << endl;
+    // int     arr[21] = {0};
+    // double  res[21] = {0.0};
+    // int     total = 1000;
+    // DieRoll dr;
+    // Tester  Tdr;
 
-    for (int i = 1; i <= total; i++) {
-        Tdr.load(dr.Roll(20, 1));
-    }
+    // for (int i = 1; i <= total; i++) {
+    //     Tdr.load(dr.Roll(20, 1));
+    // }
 
-    Tdr.distro(res, total);
+    // Tdr.distro(res, total);
 
-    for (int i = 1; i < 21; i++) {
-        cout << res[i] << " ";
-    }
-    cout << endl;
+    // for (int i = 1; i < 21; i++) {
+    //     cout << res[i] << " ";
+    // }
+    // cout << endl;
 
-    cout << "\nUsing <random> header" << endl;
-    cout << "====================" << endl;
-    int      arr2[21] = {0};
-    double   res2[21] = {0.0};
-    RandRoll r;
-    Tester   Tdr2;
+    // cout << "\nUsing <random> header" << endl;
+    // cout << "====================" << endl;
+    // int      arr2[21] = {0};
+    // double   res2[21] = {0.0};
+    // RandRoll r;
+    // Tester   Tdr2;
 
-    for (int i = 1; i <= total; i++) {
-        Tdr2.load(r.Roll(20));
-    }
+    // for (int i = 1; i <= total; i++) {
+    //     Tdr2.load(r.Roll(20));
+    // }
 
-    Tdr2.distro(res2, total);
+    // Tdr2.distro(res2, total);
 
-    for (int i = 1; i < 21; i++) {
-        cout << res2[i] << " ";
-    }
-    cout << endl;
+    // for (int i = 1; i < 21; i++) {
+    //     cout << res2[i] << " ";
+    // }
+    // cout << endl;
 
-    cout << "\n\nTesting Hand Static class RandHand" << endl;
-    cout << "==============================================================" << endl;
-    static map< string, int > HandCount;
-    string                    tempHand;
-    for (int i = 1; i <= 100; i++) {
-        tempHand = Hands::RandHand();
+    // cout << "\n\nTesting Hand Static class RandHand" << endl;
+    // cout << "==============================================================" << endl;
+    // static map< string, int > HandCount;
+    // string                    tempHand;
+    // for (int i = 1; i <= 100; i++) {
+    //     tempHand = Hands::RandHand();
 
-        if (HandCount.find(tempHand) == HandCount.end()) {
-            HandCount[tempHand] = 0;
-        }
-        HandCount[tempHand]++;
+    //     if (HandCount.find(tempHand) == HandCount.end()) {
+    //         HandCount[tempHand] = 0;
+    //     }
+    //     HandCount[tempHand]++;
 
-        cout << tempHand << " ";
+    //     cout << tempHand << " ";
 
-        if (i % 10 == 0) {
-            cout << endl;
-        }
-    }
-    for (auto const& x : HandCount) {
-        std::cout << x.first  // string (key)
-                  << " : "
-                  << (double)x.second / 100.0  // string's value
-        << std::endl;
-    }
+    //     if (i % 10 == 0) {
+    //         cout << endl;
+    //     }
+    // }
+    // for (auto const& x : HandCount) {
+    //     std::cout << x.first  // string (key)
+    //               << " : "
+    //               << (double)x.second / 100.0  // string's value
+    //     << std::endl;
+    // }
 
     cout << "\n\nHand Static class methods for emojis, and reverse lookup" << endl;
     cout << "====================================" << endl;
