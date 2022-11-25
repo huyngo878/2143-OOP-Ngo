@@ -16,7 +16,8 @@ int main()
 
     vector<BaseFighter*> fighters;
     vector<BaseFighter*> defence;
-    
+    BaseFighter *attacker;
+    BaseFighter *defender;
     
     //Optionally create a vector of 100 of each BaseFighters
     for(int i=0;i<100;i++){
@@ -32,6 +33,39 @@ int main()
         defence.push_back(new Elf("defence"));
         defence.push_back(new Dragonborn("defence"));
     }
-    cout<< defence.back();
+
+    while(fighters.size() != 0 || defence.size() != 0)
+    {
+        attacker = fighters.back();
+        defender = defence.back();
+
+
+        while(attacker->health >= 0 || defender->health >= 0)
+        {
+            attacker->health - defender->attack();
+            defender->health - attacker->attack();
+        }
+
+        if(attacker->health == 0)
+        {
+            fighters.pop_back();
+        }
+        else if(defender->health == 0)
+        {
+            defence.pop_back();
+        }
+
+    }
+
+    if(fighters.size() > 0)
+    {
+        cout << "Fighters won" << endl;
+    }
+    else if(defence.size() > 0)
+    {
+        cout << "Defenders won"<< endl;
+    }
+
+    cout << defence.back();
     return 0;
 }
