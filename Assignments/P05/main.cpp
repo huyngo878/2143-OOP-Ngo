@@ -44,6 +44,8 @@ int main()
         {
             attacker->health - defender->attack();
             defender->health - attacker->attack();
+
+            defender->regen;
         }
 
         if(attacker->health == 0)
