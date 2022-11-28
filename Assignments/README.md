@@ -9,4 +9,4 @@
 | 4 | [A04](https://github.com/huyngo878/2143-OOP-Ngo/tree/main/Assignments/OOP_Primer)| Basic OOP terminology|
 | 5 | [P03](https://github.com/huyngo878/2143-OOP-Ngo/tree/main/Assignments/P03) | Black Jack Program|
 | 6 | [P04](https://github.com/huyngo878/2143-OOP-Ngo/tree/main/Assignments/P04)| RPSLS program |
-| 7 | P03B](https://github.com/huyngo878/2143-OOP-Ngo/tree/main/Assignments/P03B)| Bolniverse Fight Club |
+| 7 | [P03B](https://github.com/huyngo878/2143-OOP-Ngo/tree/main/Assignments/P03B)| Bolniverse Fight Club |
