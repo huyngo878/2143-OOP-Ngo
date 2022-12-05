@@ -71,6 +71,7 @@ int main()
         defence.push_back(new Elf("defence"));
         defence.push_back(new Dragonborn("defence"));
     }
+
     //if one of the teams have 0 fighters the while loop stops
     while(fighters.size() != 0 || defence.size() != 0)
     {
@@ -80,19 +81,30 @@ int main()
 
         while(attacker->health >= 0 || defender->health >= 0)
         {
-            attacker->health - defender->attack();
-            defender->health - attacker->attack();
+            attacker->health =- defender->attack();
+            defender->health =- attacker->attack();
+
+            cout << attacker->health << endl;
+            cout << defender->health<< endl;
+
+            if(attacker->health <= 0)
+            {
+                fighters.pop_back();
+            }
+            else if(defender->health <= 0)
+            {
+            defence.pop_back();
+            }
 
             defender->regen;
         }
-
-        if(attacker->health == 0)
+        if(fighters.size() == 0)
         {
-            fighters.pop_back();
+        cout << "Defender Won" << endl;
         }
-        else if(defender->health == 0)
+        else if(defence.size() == 0)
         {
-            defence.pop_back();
+        cout << "Fighters won"<< endl;
         }
 
     }
